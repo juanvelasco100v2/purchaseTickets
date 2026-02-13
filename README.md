@@ -2,7 +2,7 @@
 
 Este microservicio es responsable de gestionar el proceso de finalización de compras de tiquetes dentro del ecosistema de **Ticketing System**.
 
-Está construido sobre **Spring Boot (WebFlux)** y diseñado para ser **totalmente asíncrono** y **no bloqueante**, delegando el procesamiento pesado a través de colas de mensajes (SQS).
+Está construido con **Spring Boot (WebFlux)** y diseñado para ser **totalmente asíncrono** y **no bloqueante**, delegando el procesamiento pesado a través de colas de mensajes (SQS).
 
 ---
 
@@ -92,4 +92,4 @@ docker-compose up -d purchase-tickets-service
 1.  **Entrada:** Petición HTTP POST al controlador.
 2.  **Proceso:** El servicio construye un mensaje JSON: `{"orderId":"...", "status":"..."}`.
 3.  **Salida:** El mensaje se envía a la cola SQS `manage-order-queue`.
-4.  **Consumidor:** Otro servicio (ej. `bookTickets` o un worker dedicado) escuchará esta cola para actualizar el estado final en la base de datos DynamoDB.
+4.  **Consumidor:** Otro servicio (ej. `bookTickets`) escuchará esta cola para actualizar el estado final en la base de datos DynamoDB.
